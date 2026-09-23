@@ -1,0 +1,10 @@
+{
+    "C_Cpp.default.compilerPath": "arm-none-eabi-gcc",
+    "files.exclude": {
+        "**/.git": false,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true
+    }
+}

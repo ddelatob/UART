@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "C:/Toolchains/CMSIS_6/CMSIS/Core/Include",
+                "C:/Toolchains/cmsis-device-l4/Include"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE",
+                "STM32L432xx"
+            ],
+            "compilerPath": "arm-none-eabi-gcc",
+            "intelliSenseMode": "gcc-arm",
+            "cStandard": "c11"
+        }
+    ],
+    "version": 4
+}
