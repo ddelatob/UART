@@ -20,4 +20,21 @@ int main(void) {
     GPIOA->MODER &= ~(0x3UL << (RX_PIN * 2U));
     GPIOA->MODER |= (0x2UL << (RX_PIN * 2U));
 
+    GPIOA->MODER &= ~(0x3UL << (TX_PIN * 2U));
+    GPIOA->MODER &= ~(0x3UL << (RX_PIN * 2U));
+
+    uint8_t txAfrIdx = TX_PIN >> 3U;
+    uint8_t txBitShift = (TX_PIN & 0x7) * 4U;
+    uint8_t rxAfrIdx = RX_PIN >> 3U;
+    uint8_t rxBitShift = (RX_PIN & 0x7) * 4U;
+
+    GPIOA->AFR[txAfrIdx] &= ~(0xFUL << txBitShift);
+    GPIOA->AFR[rxAfrIdx] &= ~(0xFUL << txBitShift);
+
+    GPIOA->AFR[txAfrIdx] |= (0x7UL << txBitShift);
+    GPIOA->AFR[rxAfrIdx] |= (0x7UL << rxBitShift);
+
+    USART1->CR1 |= (0x1UL << 2U);
+    USART1->CR1 |= (0x1UL << 0U);
+
 }
