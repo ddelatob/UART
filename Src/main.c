@@ -11,9 +11,7 @@ int main(void) {
     uint32_t usartDiv = 418UL;
 
     USART1->BRR = usartDiv;
-    USART1->CR1 |= (1UL << 3U);
-    USART1->CR1 |= (1UL << 0U);
-
+    
     GPIOA->MODER &= ~(0x3UL << (TX_PIN * 2U));
     GPIOA->MODER |= (0x2UL << (TX_PIN * 2U));
 
@@ -36,5 +34,16 @@ int main(void) {
 
     USART1->CR1 |= (0x1UL << 2U);
     USART1->CR1 |= (0x1UL << 0U);
+    USART1->CR1 |= (0x1UL << 3U);
+
+    char rxd = '\0';
+    while (1) {
+        while(!(USART1->ISR & (0x1UL << 5U))) {}
+        rxd = USART1->RDR;
+
+        while(!(USART1->ISR & (0x1UL << 7U))) {}
+        USART1->TDR = rxd;
+        
+    }
 
 }
